@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alex/Projects/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj": {}
+    "/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj": {}
   },
   "projects": {
-    "/Users/alex/Projects/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj": {
+    "/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alex/Projects/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj",
+        "projectUniqueName": "/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj",
         "projectName": "ExpenseTracker",
-        "projectPath": "/Users/alex/Projects/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj",
+        "projectPath": "/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/ExpenseTracker.csproj",
         "packagesPath": "/Users/alex/.nuget/packages/",
-        "outputPath": "/Users/alex/Projects/ExpenseTracker/ExpenseTracker/obj/",
+        "outputPath": "/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alex/.nuget/NuGet/NuGet.Config"
@@ -43,6 +43,12 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -50,6 +56,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.0, )"
             },

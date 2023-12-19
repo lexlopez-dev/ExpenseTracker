@@ -65,7 +65,7 @@ namespace ExpenseTracker.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(75)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Transactionid");
 
