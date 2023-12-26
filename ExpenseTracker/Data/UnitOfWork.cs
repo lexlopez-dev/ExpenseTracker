@@ -10,12 +10,15 @@ namespace ExpenseTracker.Data
 
         public ICategoryRepository Categories { get; private set; }
 
+        public ITransactionRepository Transactions { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             var _logger = loggerFactory.CreateLogger("logs");
 
             Categories = new CategoryRepository(_context, _logger);
+            Transactions = new TransactionRepository(_context, _logger);
         }
 
         public async Task CompleteAsync()

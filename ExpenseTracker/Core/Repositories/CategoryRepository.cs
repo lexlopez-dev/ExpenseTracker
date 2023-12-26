@@ -49,6 +49,11 @@ namespace ExpenseTracker.Core.Repositories
                 throw;
             }
         }
+
+        public bool CategoryExists(int id)
+        {
+            return _context.Categories.Any(x => x.CategoryId == id);
+        }
     }
 }
 

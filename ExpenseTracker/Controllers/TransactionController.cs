@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTracker.Models;
 using ExpenseTracker.Data;
+using ExpenseTracker.Core;
 
 namespace ExpenseTracker.Controllers
 {
@@ -14,95 +15,104 @@ namespace ExpenseTracker.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public TransactionController(ApplicationDbContext context)
+        public TransactionController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Transaction
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions()
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetAllTransactions()
         {
-            return await _context.Transactions.ToListAsync();
+            return Ok(await _unitOfWork.Transactions.GetAll());
         }
 
-        // GET: api/Transaction/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Transaction>> GetTransaction(int id)
+        // GET: api/Transaction/id/5
+        [HttpGet("id/{id}")]
+        public async Task<ActionResult<Transaction>> GetTransactionById(int id)
         {
-            var transaction = await _context.Transactions.FindAsync(id);
+            var transaction = await _unitOfWork.Transactions.GetById(id);
 
             if (transaction == null)
             {
                 return NotFound();
             }
 
-            return transaction;
+            return Ok(transaction);
         }
 
-        // PUT: api/Transaction/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTransaction(int id, Transaction transaction)
+        // GET: api/Transaction/category/5
+        [HttpGet("category/{categoryId}")]
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactionsByCategoryId(int categoryId)
+        {
+            // Confirm the category exists
+            var categoryExists = await _unitOfWork.Categories.GetById(categoryId);
+            if (categoryExists == null)
+            {
+                return NotFound();
+            }
+
+            var transactions = await _unitOfWork.Transactions.GetTransactionsByCategoryId(categoryId);
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(transactions);
+        }
+
+        // PATCH: api/Transaction/5
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateTransaction(int id, Transaction transaction)
         {
             if (id != transaction.Transactionid)
             {
                 return BadRequest();
             }
 
-            _context.Entry(transaction).State = EntityState.Modified;
+            var transactionExists = await _unitOfWork.Transactions.GetById(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TransactionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (transactionExists == null) return NotFound();
+
+            await _unitOfWork.Transactions.Update(transaction);
+            await _unitOfWork.CompleteAsync();
 
             return NoContent();
         }
 
         // POST: api/Transaction
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Transaction>> PostTransaction(Transaction transaction)
+        public async Task<ActionResult<Transaction>> CreateTransaction(Transaction transaction)
         {
-            _context.Transactions.Add(transaction);
-            await _context.SaveChangesAsync();
+            // Confirm the category exists
+            var categoryExists = await _unitOfWork.Categories.GetById(transaction.CategoryId);
+            if (categoryExists == null)
+            {
+                return NotFound();
+            }
 
-            return CreatedAtAction("GetTransaction", new { id = transaction.Transactionid }, transaction);
+            await _unitOfWork.Transactions.Add(transaction);
+            await _unitOfWork.CompleteAsync();
+
+            return CreatedAtAction("CreateTransaction", new { id = transaction.Transactionid }, transaction);
         }
 
         // DELETE: api/Transaction/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransaction(int id)
         {
-            var transaction = await _context.Transactions.FindAsync(id);
+            var transaction = await _unitOfWork.Transactions.GetById(id);
             if (transaction == null)
             {
                 return NotFound();
             }
 
-            _context.Transactions.Remove(transaction);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.Transactions.Delete(transaction);
+            await _unitOfWork.CompleteAsync();
 
             return NoContent();
-        }
-
-        private bool TransactionExists(int id)
-        {
-            return _context.Transactions.Any(e => e.Transactionid == id);
         }
     }
 }

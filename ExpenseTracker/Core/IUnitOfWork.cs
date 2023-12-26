@@ -5,6 +5,8 @@ namespace ExpenseTracker.Core
 	{
 		ICategoryRepository Categories { get; }
 
+		ITransactionRepository Transactions { get; }
+
 		Task CompleteAsync();
 	}
 }

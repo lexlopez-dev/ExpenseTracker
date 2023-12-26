@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Core;
 using ExpenseTracker.Data;
+using ExpenseTracker.Filters.CategoryFilters;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<Category_ValidateCategoryIdFilterAttribute>();
 
 var app = builder.Build();
 

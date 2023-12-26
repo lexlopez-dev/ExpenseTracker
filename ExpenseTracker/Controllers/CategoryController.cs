@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ExpenseTracker.Models;
-using ExpenseTracker.Data;
 using ExpenseTracker.Core;
+using ExpenseTracker.Filters.CategoryFilters;
 
 namespace ExpenseTracker.Controllers
 {
@@ -26,6 +25,7 @@ namespace ExpenseTracker.Controllers
 
         // GET: api/Category/5
         [HttpGet("id/{id}")]
+        [ServiceFilter(typeof(Category_ValidateCategoryIdFilterAttribute))]
         public async Task<ActionResult<Category>> GetCategoryById(int id)
         {
             var category = await _unitOfWork.Categories.GetById(id);
@@ -51,16 +51,14 @@ namespace ExpenseTracker.Controllers
 
         // PATCH: api/Category/5
         [HttpPatch("{id}")]
+        [ServiceFilter(typeof(Category_ValidateCategoryIdFilterAttribute))]
+        [Category_ValidateUpdateCategoryFilter]
         public async Task<IActionResult> UpdateCategory(int id, Category category)
         {
-            if (id != category.CategoryId)
-            {
-                return BadRequest();
-            }
-
-            var categoryExists = await _unitOfWork.Categories.GetById(id);
-
-            if (categoryExists == null) return NotFound();
+            //if (id != category.CategoryId)
+            //{
+            //    return BadRequest();
+            //}
 
             await _unitOfWork.Categories.Update(category);
             await _unitOfWork.CompleteAsync();
@@ -75,11 +73,12 @@ namespace ExpenseTracker.Controllers
             await _unitOfWork.Categories.Add(category);
             await _unitOfWork.CompleteAsync();
 
-            return CreatedAtAction("PostCategory", new { id = category.CategoryId }, category);
+            return CreatedAtAction("CreateCategory", new { id = category.CategoryId }, category);
         }
 
         // DELETE: api/Category/5
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(Category_ValidateCategoryIdFilterAttribute))]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var category = await _unitOfWork.Categories.GetById(id);

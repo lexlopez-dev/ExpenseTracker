@@ -26,6 +26,9 @@
     <None Remove="Core\" />
     <None Remove="Core\Repositories\" />
     <None Remove="Data\" />
+    <None Remove="Filters\" />
+    <None Remove="Filters\Transaction\" />
+    <None Remove="Filters\CategoryFilters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -33,5 +36,8 @@
     <Folder Include="Core\" />
     <Folder Include="Core\Repositories\" />
     <Folder Include="Data\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Filters\Transaction\" />
+    <Folder Include="Filters\CategoryFilters\" />
   </ItemGroup>
 </Project>
