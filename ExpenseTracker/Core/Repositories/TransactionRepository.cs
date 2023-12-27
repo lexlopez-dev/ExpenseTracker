@@ -46,13 +46,18 @@ namespace ExpenseTracker.Core.Repositories
                 return await _context.Transactions
                     .Include(t => t.Category)
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Transactionid == id);
+                    .FirstOrDefaultAsync(x => x.TransactionId == id);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
+        }
+
+        public bool TransactionExists(int id)
+        {
+            return _context.Transactions.Any(x => x.TransactionId == id);
         }
     }
 }

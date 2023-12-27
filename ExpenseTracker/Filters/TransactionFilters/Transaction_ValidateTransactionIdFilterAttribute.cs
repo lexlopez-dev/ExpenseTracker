@@ -1,15 +1,16 @@
-﻿using ExpenseTracker.Core;
+﻿using System;
+using ExpenseTracker.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace ExpenseTracker.Filters.CategoryFilters
+namespace ExpenseTracker.Filters.TransactionFilters
 {
-	public class Category_ValidateCategoryIdFilterAttribute : ActionFilterAttribute, IActionFilter
-	{
+	public class Transaction_ValidateTransactionIdFilterAttribute : ActionFilterAttribute, IActionFilter
+    {
         private readonly IUnitOfWork _unitOfWork;
 
-        public Category_ValidateCategoryIdFilterAttribute(IUnitOfWork unitOfWork)
-        {
+        public Transaction_ValidateTransactionIdFilterAttribute(IUnitOfWork unitOfWork)
+		{
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
@@ -17,21 +18,21 @@ namespace ExpenseTracker.Filters.CategoryFilters
         {
             base.OnActionExecuting(context);
 
-            var categoryId = context.ActionArguments["id"] as int?;
-            if (categoryId.HasValue)
+            var transactionId = context.ActionArguments["id"] as int?;
+            if (transactionId.HasValue)
             {
-                if (categoryId.Value <= 0)
+                if (transactionId.Value <= 0)
                 {
-                    context.ModelState.AddModelError("CategoryId", "CategoryId is invalid.");
+                    context.ModelState.AddModelError("TransactionId", "TransactionId is invalid");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status400BadRequest
                     };
                     context.Result = new BadRequestObjectResult(problemDetails);
                 }
-                else if (!_unitOfWork.Categories.CategoryExists(categoryId.Value))
+                else if (!_unitOfWork.Transactions.TransactionExists(transactionId.Value))
                 {
-                    context.ModelState.AddModelError("CategoryId", "Category doesn't exist");
+                    context.ModelState.AddModelError("TransactionId", "Transaction doesn't exist");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status404NotFound

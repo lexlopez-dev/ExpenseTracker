@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ExpenseTracker.Models;
 using ExpenseTracker.Core;
 using ExpenseTracker.Filters.CategoryFilters;
+using ExpenseTracker.Filters.ExceptionFilters;
 
 namespace ExpenseTracker.Controllers
 {
@@ -53,13 +54,9 @@ namespace ExpenseTracker.Controllers
         [HttpPatch("{id}")]
         [ServiceFilter(typeof(Category_ValidateCategoryIdFilterAttribute))]
         [Category_ValidateUpdateCategoryFilter]
+        [ServiceFilter(typeof(Category_HandleUpdateExceptionsFilterAttribute))]
         public async Task<IActionResult> UpdateCategory(int id, Category category)
         {
-            //if (id != category.CategoryId)
-            //{
-            //    return BadRequest();
-            //}
-
             await _unitOfWork.Categories.Update(category);
             await _unitOfWork.CompleteAsync();
 

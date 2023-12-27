@@ -1,6 +1,8 @@
 ﻿using ExpenseTracker.Core;
 using ExpenseTracker.Data;
 using ExpenseTracker.Filters.CategoryFilters;
+using ExpenseTracker.Filters.ExceptionFilters;
+using ExpenseTracker.Filters.TransactionFilters;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,9 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"))
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<Category_ValidateCategoryIdFilterAttribute>();
+builder.Services.AddScoped<Transaction_ValidateTransactionIdFilterAttribute>();
+builder.Services.AddScoped<Transaction_HandleUpdateExceptionsFilterAttribute>();
+builder.Services.AddScoped<Category_HandleUpdateExceptionsFilterAttribute>();
 
 var app = builder.Build();
 
