@@ -30,6 +30,7 @@
     <None Remove="Filters\CategoryFilters\" />
     <None Remove="Filters\TransactionFilters\" />
     <None Remove="Filters\ExceptionFilters\" />
+    <None Remove="Authority\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -41,5 +42,6 @@
     <Folder Include="Filters\CategoryFilters\" />
     <Folder Include="Filters\TransactionFilters\" />
     <Folder Include="Filters\ExceptionFilters\" />
+    <Folder Include="Authority\" />
   </ItemGroup>
 </Project>
