@@ -3,11 +3,13 @@ using ExpenseTracker.Models;
 using ExpenseTracker.Core;
 using ExpenseTracker.Filters.CategoryFilters;
 using ExpenseTracker.Filters.ExceptionFilters;
+using ExpenseTracker.Filters.AuthFilters;
 
 namespace ExpenseTracker.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]  
+    [JwtTokenAuthFilter]
     public class CategoryController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

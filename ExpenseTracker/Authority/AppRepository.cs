@@ -10,14 +10,10 @@ namespace ExpenseTracker.Authority
 				ApplicationId = 1,
 				ApplicationName = "TestApp",
 				ClientId = "d5d26276-fbb0-48fc-a0d4-a2e89084de5d",
-				Secret = "965a3652-8015-479a-8cb4-a21fb5e4da4b"
+				Secret = "965a3652-8015-479a-8cb4-a21fb5e4da4b",
+				Scopes = "read,write"
             }
 		};
-
-		public static bool Authenticate(string clientId, string secret)
-		{
-			return _applications.Any(x => x.ClientId == clientId && x.Secret == secret);
-		}
 
 		public static Application? GetApplicationByClientId(string clientId)
 		{

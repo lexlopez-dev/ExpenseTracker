@@ -1,23 +1,35 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using ExpenseTracker.Authority;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ExpenseTracker.Controllers
 {
 	[ApiController]
 	public class AuthorityController : ControllerBase
 	{
+        private readonly IConfiguration configuration;
+
+        public AuthorityController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
 
         [HttpPost("auth")]
 		public IActionResult Authenticate([FromBody]AppCredential credential)
 		{
-			if (AppRepository.Authenticate(credential.ClientId, credential.Secret))
+            var expiresAt = DateTime.UtcNow.AddMinutes(10);
+
+            if (Authenticator.Authenticate(credential.ClientId, credential.Secret))
 			{
 				return Ok(new
 				{
-					access_token = CreateToken(credential.ClientId),
-					expires_at = DateTime.UtcNow.AddMinutes(10)
+					access_token = Authenticator.CreateToken(credential.ClientId, expiresAt, configuration.GetValue<string>("SecretKey")),
+					expires_at = expiresAt
                 });
             }
             else
@@ -30,11 +42,6 @@ namespace ExpenseTracker.Controllers
                 return new UnauthorizedObjectResult(problemDetails);
             }
 		}
-
-        private object CreateToken(string clientId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

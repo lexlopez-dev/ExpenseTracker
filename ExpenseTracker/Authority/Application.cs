@@ -10,6 +10,8 @@ namespace ExpenseTracker.Authority
 		public string? ClientId { get; set; }
 
 		public string? Secret { get; set; }
+
+		public string? Scopes { get; set; }
 	}
 }
 
