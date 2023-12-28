@@ -19,6 +19,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +35,7 @@
     <None Remove="Filters\ExceptionFilters\" />
     <None Remove="Authority\" />
     <None Remove="Filters\AuthFilters\" />
+    <None Remove="Filters\OperationFilter\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -46,5 +49,6 @@
     <Folder Include="Filters\ExceptionFilters\" />
     <Folder Include="Authority\" />
     <Folder Include="Filters\AuthFilters\" />
+    <Folder Include="Filters\OperationFilter\" />
   </ItemGroup>
 </Project>

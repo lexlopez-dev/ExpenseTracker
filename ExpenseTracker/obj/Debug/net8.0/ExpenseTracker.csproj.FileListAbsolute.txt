@@ -389,3 +389,5 @@
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.pdb
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.genruntimeconfig.cache
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ref/ExpenseTracker.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Versioning.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll

@@ -9,7 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ExpenseTracker.Controllers
 {
-	[ApiController]
+    [ApiVersion("1.0")]
+    [ApiController]
 	public class AuthorityController : ControllerBase
 	{
         private readonly IConfiguration configuration;

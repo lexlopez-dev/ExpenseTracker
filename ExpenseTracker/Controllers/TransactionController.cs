@@ -8,8 +8,9 @@ using ExpenseTracker.Filters.AuthFilters;
 
 namespace ExpenseTracker.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{v:apiVersion}/[controller]")]
     [JwtTokenAuthFilter]
     public class TransactionController : ControllerBase
     {
