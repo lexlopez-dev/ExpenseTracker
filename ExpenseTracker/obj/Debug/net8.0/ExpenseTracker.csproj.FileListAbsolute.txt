@@ -135,14 +135,6 @@
 /Users/alex/Projects/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.pdb
 /Users/alex/Projects/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.genruntimeconfig.cache
 /Users/alex/Projects/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ref/ExpenseTracker.dll
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.csproj.AssemblyReference.cache
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.GeneratedMSBuildEditorConfig.editorconfig
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.AssemblyInfoInputs.cache
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.AssemblyInfo.cs
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.csproj.CoreCompileInputs.cache
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.MvcApplicationPartsAssemblyInfo.cs
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.MvcApplicationPartsAssemblyInfo.cache
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.sourcelink.json
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/appsettings.Development.json
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/appsettings.json
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/ExpenseTracker
@@ -153,6 +145,8 @@
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Azure.Core.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Azure.Identity.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Humanizer.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Versioning.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Razor.Language.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.Build.dll
@@ -375,6 +369,14 @@
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.csproj.AssemblyReference.cache
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.AssemblyInfoInputs.cache
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.AssemblyInfo.cs
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.csproj.CoreCompileInputs.cache
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.MvcApplicationPartsAssemblyInfo.cs
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.MvcApplicationPartsAssemblyInfo.cache
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.sourcelink.json
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/staticwebassets.build.json
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/staticwebassets.development.json
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/staticwebassets/msbuild.ExpenseTracker.Microsoft.AspNetCore.StaticWebAssets.props
@@ -389,5 +391,6 @@
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.pdb
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.genruntimeconfig.cache
 /Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/obj/Debug/net8.0/ref/ExpenseTracker.dll
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Versioning.dll
-/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.ApplicationInsights.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.Extensions.Logging.ApplicationInsights.dll
+/Users/alex/Projects/git/ExpenseTracker/ExpenseTracker/bin/Debug/net8.0/Microsoft.Extensions.Logging.AzureAppServices.dll

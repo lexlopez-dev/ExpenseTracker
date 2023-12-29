@@ -14,10 +14,12 @@ namespace ExpenseTracker.Controllers
 	public class AuthorityController : ControllerBase
 	{
         private readonly IConfiguration configuration;
+        private readonly ILogger<AuthorityController> _logger;
 
-        public AuthorityController(IConfiguration configuration)
+        public AuthorityController(IConfiguration configuration, ILogger<AuthorityController> logger)
         {
             this.configuration = configuration;
+            _logger = logger;
         }
 
         [HttpPost("auth")]
@@ -27,14 +29,29 @@ namespace ExpenseTracker.Controllers
 
             if (Authenticator.Authenticate(credential.ClientId, credential.Secret))
 			{
-				return Ok(new
+                _logger.LogInformation("Authenticator.Authenticate successful");
+
+                string accessToken = "";
+                try
+                {
+                    accessToken = Authenticator.CreateToken(credential.ClientId, expiresAt, configuration.GetValue<string>("SecretKey"));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogInformation($"Authenticator.CreateToken failed ex: {ex}");
+                }
+                
+                _logger.LogInformation($"Authenticator.CreateToken successful : {accessToken}");
+                return Ok(new
 				{
-					access_token = Authenticator.CreateToken(credential.ClientId, expiresAt, configuration.GetValue<string>("SecretKey")),
+					access_token = accessToken,
 					expires_at = expiresAt
                 });
             }
             else
 			{
+                _logger.LogError("Error Authenticating");
+
                 ModelState.AddModelError("Unauthorized", "You are not authorized.");
                 var problemDetails = new ValidationProblemDetails(ModelState)
                 {

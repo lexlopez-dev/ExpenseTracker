@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Mvc;
+using Azure.Core;
 
 namespace ExpenseTracker.Authority
 {
@@ -23,24 +25,32 @@ namespace ExpenseTracker.Authority
         {
             var app = AppRepository.GetApplicationByClientId(clientId);
 
-            var claims = new List<Claim>
+            JwtSecurityToken jwt = new JwtSecurityToken();
+            try
             {
-                new Claim("AppName", app.ApplicationName ?? string.Empty),
+                var claims = new List<Claim>
+            {
+                new Claim("AppName", app?.ApplicationName ?? string.Empty),
                 new Claim("Read", (app?.Scopes ?? string.Empty).Contains("read") ? "true" : "false"),
                 new Claim("Write", (app?.Scopes ?? string.Empty).Contains("write") ? "true" : "false")
             };
 
-            var secretKey = Encoding.ASCII.GetBytes(strSecretKey);
+                var secretKey = Encoding.ASCII.GetBytes(strSecretKey);
 
-            var jwt = new JwtSecurityToken(
-                signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(secretKey),
-                    SecurityAlgorithms.HmacSha256Signature),
-                    claims: claims,
-                    expires: expiresAt,
-                    notBefore: DateTime.UtcNow
-            );
-
+                jwt = new JwtSecurityToken(
+                    signingCredentials: new SigningCredentials(
+                        new SymmetricSecurityKey(secretKey),
+                        SecurityAlgorithms.HmacSha256Signature),
+                        claims: claims,
+                        expires: expiresAt,
+                        notBefore: DateTime.UtcNow
+                );
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
