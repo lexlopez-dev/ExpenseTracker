@@ -29,8 +29,6 @@ namespace ExpenseTracker.Controllers
 
             if (Authenticator.Authenticate(credential.ClientId, credential.Secret))
 			{
-                _logger.LogInformation("Authenticator.Authenticate successful");
-
                 string accessToken = "";
                 try
                 {
@@ -38,10 +36,10 @@ namespace ExpenseTracker.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogInformation($"Authenticator.CreateToken failed ex: {ex}");
+                    _logger.LogInformation($"CreateToken failed: {ex}");
                 }
                 
-                _logger.LogInformation($"Authenticator.CreateToken successful : {accessToken}");
+                _logger.LogInformation("Authenticate successful");
                 return Ok(new
 				{
 					access_token = accessToken,
@@ -50,7 +48,7 @@ namespace ExpenseTracker.Controllers
             }
             else
 			{
-                _logger.LogError("Error Authenticating");
+                _logger.LogError("Authenticate failed");
 
                 ModelState.AddModelError("Unauthorized", "You are not authorized.");
                 var problemDetails = new ValidationProblemDetails(ModelState)
